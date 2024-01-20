@@ -1,0 +1,73 @@
+<style>
+    .hiring{
+        border: 1px solid black;
+        display: inline-block;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .card{
+        /* height: 24rem; */
+        display: inline-block;
+        margin-left: 10px;
+        margin-top: 10px;
+        border: 2px solid black;
+        padding: 5px;
+    }
+    .skill{
+        display: inline-block;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px;
+        margin-top: 4px;
+        margin-bottom: 5px;
+    }
+    .view-details{
+        width: 100%;
+        margin-top: 10px;
+    }
+    .all-skills{
+        border: 1px solid black;
+        height: 147px;
+        padding: 5px;
+    }
+    .icon{
+        margin-left: 10px;
+        color: green;
+    }
+    .fa{
+        font-size: 20px;
+    }
+    .no-jobs{
+        font-weight: bold;
+        font-size: 50px;
+        margin-top: 100px;
+    }
+</style>
+
+<%if(jobs.length == 0){%>
+    <p class="text-center no-jobs">
+        No job present at the moment.
+    </p>
+<%}%>
+
+<%jobs.forEach((job) => { %>
+    <div class="card" style="width: 18rem;">
+        <p class="hiring">Actively Hiring<i class="icon white-color fa fa-line-chart"></i></p>
+        <div class="card-body">
+          <h3 class="card-title"><%= job.companyName %></h3>
+          <p class="card-text"><%= job.jobCategory %> <%= job.jobDesignation %></p>
+          <h6><%= job.jobLocation %></h6>
+          <h6><%= job.salary %></h6>
+            <div class="all-skills">
+                <%job.skills.forEach((skill) => {%>
+                  <div class="skill">
+                      <%= skill %>
+                  </div>
+                <%})%>
+            </div>
+
+          <a href="/job/<%=job.id%>" class="btn btn-primary view-details">View Details</a>
+        </div>
+    </div>
+    <%})%>
+

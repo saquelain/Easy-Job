@@ -1,0 +1,121 @@
+<style>
+    .icon{
+        margin-left: 10px;
+    }
+    .fa{
+        font-size: 20px;
+    }
+    .fa-edit{
+        margin-left: 15px;
+    }
+    .text-body-secondary{
+        margin-top: 15px;
+    }
+</style>
+
+
+<div class="container my-2">
+    <div class="card mb-3">
+        <a href="https://www.codingninjas.com/"><img src="https://files.codingninjas.com/web-banner-28759.png" alt="poster" class="card-img-top"></a>
+
+        <div class="card-body">
+            <h1 class="text-center text-success"><span class="text-danger"> <%=job.jobDesignation%> </span> oppertunity in <%=job.jobLocation%> at <span class="text-info"> <%=job.companyName%> </span></h1>
+            <div class="actions d-flex align-items-center">
+                <button type="button" class="btn btn-warning border border-black">Actively hiring<i class="icon white-color fa fa-line-chart"></i></button>
+                <!-- these two will only be visible when recruiter is logged in -->
+                <%if(locals.userEmail){%>
+                  <a href="/job/update/<%=job.id%>"><i class="icon fa fa-edit text-primary"></i></a>
+                  <a href="/job/delete/<%=job.id%>"><i class="icon fa fa-window-close-o text-danger"></i></a>
+                <%}%>
+
+            </div>
+
+            <div class="container d-flex flex-column align-items-centre justify-content-start my-3">
+                <h5 class="my-1"><%=job.companyName%></h5>
+                <div>
+                  <span><%=job.jobCategory%></span>
+                  <span class="text-success"><%=job.jobDesignation%></span>
+                </div>
+                <div class="d-flex flex-column align-items-centre justify-content-start p-2">
+                  <span class="">
+                    <i class="icon fa fa-map-pin"></i>
+                    <%=job.jobLocation%>
+                  </span>
+                  <span class="">
+                    <i class="icon fa fa-rupee"></i>
+                    <%=job.salary%>
+                  </span>
+                  <span>
+                    <i class="icon fa fa-hourglass-2"></i>
+                    Apply By <%=job.applyBy%>
+                  </span>
+                  <span>
+                    <i class="icon fa fa-briefcase"></i>
+                    Number of openings <%=job.totalOpenings%></span>
+                  <a style="text-decoration: none; color: rgb(215, 20, 85)" href="applicants/3">
+                    <span>
+                        <i class="icon fa fa-vcard-o"></i>
+                      Applicants 0</span>
+                  </a>
+                </div>
+        
+                <div class="container">
+                  <div class="skills p-1">
+                    <%job.skills.forEach((skill) => {%>
+                      <button class="btn btn-sm btn-outline-info"><%=skill%></button>
+                    <%})%>
+                    
+                  </div>
+                  <button data-bs-toggle="modal" data-bs-target="#applyModal" class="btn btn-md btn-primary px-5 my-2">
+                    Apply Now
+                  </button>
+                </div>
+                <small class="text-body-secondary">
+                    <span style="width: 160px" class="bg-success text-white border border-success border border-success p-1 border-opacity-50 rounded">
+                      Posted: <%=job.postTime%>
+                    </span>
+                </small>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="applyModalLongTitle">Apply in less than 1 minute</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/apply" method="post">
+                
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="name" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter your phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    <input class="form-control" type="file" id="resume" accept="application/pdf">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

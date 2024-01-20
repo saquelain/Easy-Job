@@ -1,0 +1,75 @@
+<style>
+    .display-inline{
+        display: inline-block;
+    }
+    .heading{
+        position: relative;
+        margin-left: 40%;
+    }
+    .display-block{
+        display: block;
+    }
+</style>
+
+
+<h1 class="mt-5 mb-4 heading">Update Job</h1>
+
+<form action="/updateJob/<%=jobId%>" method="post">
+
+    <div class="mb-3 display-inline">
+        <label for="jobCategory" class="form-label">Select job category</label>
+        <select class="form-select" id="jobCategory" name="jobCategory" required>
+            <option value="tech">Tech</option>
+            <option value="non-tech">Non Tech</option>
+        </select>
+    </div>
+
+    <div class="mb-3 mx-5 display-inline">
+        <label for="jobDesignation" class="form-label">Select job designation</label>
+        <select class="form-select" id="jobDesignation" name="jobDesignation" required>
+            <option value="HR">HR</option>
+            <option value="SDE">SDE</option>
+            <option value="DevOps">DevOps</option>
+            <option value="MERN Developer">MERN Developer</option>
+            <option value="MEAN Developer">MEAN Developer</option>
+            <option value="JAVA Developer">JAVA Developer</option>
+            <option value="Front-End Developer">Front-End Developer</option>
+            <option value="Back-End Developer">Back-End Developer</option>
+            <option value="Full-Stack Developer">Full-Stack Developer</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="jobLocation" class="form-label">Enter job location</label>
+        <input type="text" class="form-control" id="jobLocation" name="jobLocation" required>
+    </div>
+    <div class="mb-3">
+        <label for="companyName" class="form-label">Enter company name</label>
+        <input type="text" class="form-control" id="companyName" name="companyName" required>
+    </div>
+    <div class="mb-3 display-inline">
+        <input type="number" class="form-control" id="salary" name="salary" placeholder="Enter salary" required>
+    </div>
+    <div class="mb-3 mx-5 display-inline" style="width: fit-content;">
+        <input type="number" class="form-control" id="totalOpenings" name="totalOpenings" placeholder="Number of openings" required>
+    </div>
+    <div class="mb-3 display-block" style="width: fit-content">
+        <label for="skills" class="form-label">Select skills required for this job</label>
+        <select class="form-select" multiple id="skills" name="skills" required>
+            <option value="React">React</option>
+            <option value="NodeJs">NodeJs</option>
+            <option value="Angular">Angular</option>
+            <option value="MongoDB">MongoDB</option>
+            <option value="SQL">SQL</option>
+            <option value="Express">Express</option>
+            <option value="Java">Java</option>
+            <option value="SprintBoot">SprintBoot</option>
+            <option value="C++">C++</option>
+            <option value="DSA">DSA</option>
+        </select>
+    </div>
+    <div class="mb-3 display-inline">
+        <label for="applyBy" class="form-label">Apply by</label>
+        <input type="date" class="form-control" id="applyBy" name="applyBy" required>
+    </div>
+    <button type="submit" class="btn btn-primary mb-5 w-25 p-2 display-block">Update</button>
+</form>
